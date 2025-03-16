@@ -235,20 +235,9 @@ const ImageCaptchaSelector = ({ onPass, onChallengeChange, customImages }) => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
             </svg>
           </button>
-          <button className="text-gray-600 hover:text-gray-800" title="Audio challenge">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414 1.414m2.828-9.9a9 9 0 012.828-2.828" />
-            </svg>
-          </button>
-          <button className="text-gray-600 hover:text-gray-800" title="Information">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </button>
         </div>
         <button
           onClick={handleVerify}
-          disabled={loading}
           className={`px-4 py-2 rounded-sm font-bold bg-[#4A90E2] text-white hover:bg-[#3A80D2]'}`}
         >
           {loading ? 'Verifying...' : 'VERIFY'}

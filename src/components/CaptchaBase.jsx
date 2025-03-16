@@ -4,18 +4,7 @@ import ImageCaptchaSelector from './ImageCaptchaSelector';
 import { useState, useCallback, useEffect, useMemo } from 'react';
 import LargeCaptchaSelector from './LargeCaptchaSelector';
 import RizzQ from '../pages/RizzQ';
-const TextCaptcha = ({ onPass }) => (
-  <div className='flex flex-col items-center justify-center w-[96rem] min-h-[48rem]'>
-    <div className='text-xl mb-4'>Text verification captcha would go here</div>
-    <button
-      onClick={() => onPass(true)}
-      className='bg-blue-500 text-black p-2 rounded'
-    >
-      Simulate Pass
-    </button>
-  </div>
-);
-
+import CATpcha from '../components/CATpcha'
 const VerificationContent = ({ onComplete }) => {
   const [currentCaptchaIndex, setCurrentCaptchaIndex] = useState(0);
   const [showSpinner, setShowSpinner] = useState(false);
@@ -44,9 +33,14 @@ const VerificationContent = ({ onComplete }) => {
         title: '',
       },
       {
-        component: TextCaptcha,
-        title: 'Type the characters you see in the image',
+        component: RizzQ,
+        title: '',
       },
+      {
+        component: CATpcha,
+        title: '',
+      },
+
     ],
     [imageCaptchaTitle]
   );

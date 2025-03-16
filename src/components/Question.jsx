@@ -68,7 +68,7 @@ function Question({
           onClick={() => {
             goBackQuestion();
           }}
-          className='border border-black text-black bg-transparent py-1 px-4 rounded flex items-center justify-center  hover:bg-black hover:text-white'
+          className='px-4 py-2 rounded-sm font-bold bg-[#4A90E2] text-white hover:bg-[#3A80D2]'
         >
           Back
         </button>
@@ -77,7 +77,7 @@ function Question({
           onClick={() => {
             submitAnswer(number - 1, { id: questionId, answer });
           }}
-          className='border border-black text-black bg-transparent py-1 px-4 rounded flex items-center justify-center  hover:bg-black hover:text-white'
+          className='px-4 py-2 rounded-sm font-bold bg-[#4A90E2] text-white hover:bg-[#3A80D2]'
         >
           {final == true ? 'Submit' : 'Next'}
         </button>

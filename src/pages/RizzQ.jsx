@@ -17,7 +17,7 @@ function RizzQ({ onPass }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8080/questions');
+        const response = await fetch('https://rizz-q-captcha.vercel.app/questions');
         if (!response.ok) {
           setError('error');
           throw new Error('Network response was not ok');
@@ -62,7 +62,7 @@ function RizzQ({ onPass }) {
     setQuestionNumber((number) => number + 1);
   }
   async function submitEarly() {
-    let response = await fetch('http://localhost:8080/answers', {
+    let response = await fetch('https://rizz-q-captcha.vercel.app/answers', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ function RizzQ({ onPass }) {
   useEffect(() => {
     async function submit() {
       if (answers.length == data.length && questionNumber == data.length) {
-        let response = await fetch('http://localhost:8080/answers', {
+        let response = await fetch('https://rizz-q-captcha.vercel.app/answers', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -132,10 +132,13 @@ function RizzQ({ onPass }) {
   }
 
   return (
-    <div className='w-[30rem] h-[22rem] bg-white pt-8 rounded-md p-4'>
-      {' '}
+    <div className='w-[31rem] h-fit bg-white rounded-md'>
+      <div className="bg-[#4A90E2] text-white p-4">
+        <p className="font-bold text-lg">Complete the RizzQ Test</p>
+        <p className="text-sm">Answer Truthfully, Passing is 115 RizzQ</p>
+      </div>
       {page == 'test' ? (
-        <div className='text-black'>
+        <div className='text-black p-6'>
           {loading && <p>Loading...</p>}
           {error && <p>Error: {error.message}</p>}
           {data.length > 0 ? (
