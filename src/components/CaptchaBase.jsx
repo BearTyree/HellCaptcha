@@ -17,10 +17,6 @@ const VerificationContent = ({ onComplete }) => {
   const captchaComponents = useMemo(
     () => [
       {
-        component: RizzQ,
-        title: '',
-      },
-      {
         component: ImageCaptchaSelector,
         title: '',
       },
