@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Question({
   number,
@@ -11,12 +11,25 @@ function Question({
   questionId,
 }) {
   const [answer, setAnswer] = useState(propanswer);
+  useEffect(() => {
+    console.log(
+      'answer: ' + answer + ' propanswer:' + JSON.stringify(propanswer)
+    );
+  });
+
   return (
     <>
-      {number + '.'}&emsp;&emsp;
-      {question}
-      <br />
-      &emsp;&emsp;
+      <div className='flex row'>
+        {number + '.'}&emsp;&emsp;
+        <div>
+          {question.split('\n').map((line, index) => (
+            <span key={index + 30}>
+              {line}
+              <br />
+            </span>
+          ))}
+        </div>
+      </div>
       <br />
       <div className='flex'>
         <div>&ensp;&emsp;&emsp;&emsp;</div>

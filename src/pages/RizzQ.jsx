@@ -40,7 +40,6 @@ function RizzQ({ onPass }) {
 
   async function submitAnswer(index, newItem) {
     setAnswers((prevAnswers) => {
-      console.log(newItem);
       const newAnswers = [...prevAnswers];
 
       if (index < newAnswers.length) {
@@ -133,7 +132,7 @@ function RizzQ({ onPass }) {
   }
 
   return (
-    <div className='w-[20rem] h-[20rem] bg-white pt-8 rounded-md p-4'>
+    <div className='w-[30rem] h-[22rem] bg-white pt-8 rounded-md p-4'>
       {' '}
       {page == 'test' ? (
         <div className='text-black'>
@@ -155,15 +154,19 @@ function RizzQ({ onPass }) {
               />
               <div className='h-5'></div>
               <Question
-                key={questionNumber}
                 number={questionNumber}
                 question={data[questionNumber - 1].question}
                 options={data[questionNumber - 1].options}
                 submitAnswer={submitAnswer}
-                propanswer={answers[questionNumber - 1]}
+                propanswer={
+                  !!answers[questionNumber - 1]?.answer
+                    ? answers[questionNumber - 1].answer
+                    : undefined
+                }
                 goBackQuestion={goBackQuestion}
                 final={questionNumber == data.length ? true : false}
                 questionId={data[questionNumber - 1].id}
+                key={questionNumber}
               />
             </>
           ) : (
