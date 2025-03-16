@@ -27,8 +27,13 @@ export const ModalProvider = ({ children }) => {
     }, 300);
   };
 
+  // Add a function to update the modal title dynamically
+  const updateModalTitle = (newTitle) => {
+    setModalTitle(newTitle);
+  };
+
   return (
-    <ModalContext.Provider value={{ openModal, closeModal }}>
+    <ModalContext.Provider value={{ openModal, closeModal, updateModalTitle }}>
       {children}
       
       <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -52,12 +57,12 @@ export const ModalProvider = ({ children }) => {
               </div>
             )}
             
-            <div className={`${!modalTitle ? 'pt-8' : ''} p-4`}>
+            <div className={`${!modalTitle ? '' : ''} `}>
               {modalContent}
             </div>
             
             {modalProps.showFooter && (
-              <div className="border-t border-gray-200 p-4 flex justify-end items-center gap-2">
+              <div className="border-t border-gray-200 flex justify-end items-center gap-2">
                 {modalProps.footerContent || (
                   <Dialog.Close 
                     className="bg-[#4a90e2] text-white px-4 py-2 rounded hover:bg-[#3b7dd8]"
