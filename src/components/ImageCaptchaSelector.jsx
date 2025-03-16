@@ -216,13 +216,13 @@ const ImageCaptchaSelector = ({ onPass, onChallengeChange, customImages }) => {
         {images.map((image) => (
           <div 
             key={image.id}
-            className={`relative cursor-pointer overflow-hidden h-[100px]`}
+            className={`relative cursor-pointer overflow-hidden `}
             onClick={() => toggleImageSelection(image.id)}
           >
             <img 
               src={image.src} 
               alt={`Captcha image ${image.id}`} 
-              className="w-full h-full object-cover"
+              className="w-[150px] h-[150px] object-cover"
             />
             {selectedImages.has(image.id) && (
               <div className="absolute inset-0 bg-blue-500 bg-opacity-30 flex items-center justify-center">
