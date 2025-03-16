@@ -94,18 +94,18 @@ const VerificationContent = ({ onComplete }) => {
   const CurrentCaptcha = captchaComponents[currentCaptchaIndex].component;
 
   return (
-    <div className="relative w-full h-full">
-      {!showSpinner && !showCheckmark && (
-        currentCaptchaIndex === 0 ? (
-          <CurrentCaptcha 
-            onPass={handleCaptchaPass} 
+    <div className='relative w-full h-full'>
+      {!showSpinner &&
+        !showCheckmark &&
+        (currentCaptchaIndex === 0 ? (
+          <CurrentCaptcha
+            onPass={handleCaptchaPass}
             onChallengeChange={handleImageChallengeChange}
           />
         ) : (
           <CurrentCaptcha onPass={handleCaptchaPass} />
-        )
-      )}
-  
+        ))}
+
       {showSpinner && (
         <div className='fixed inset-0 flex items-center justify-center bg-white z-50'>
           <img

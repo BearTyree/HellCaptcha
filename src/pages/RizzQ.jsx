@@ -132,8 +132,13 @@ function RizzQ({ onPass }) {
   }
 
   return (
-    <div className='w-[30rem] h-[22rem] bg-white pt-8 rounded-md p-4'>
-      {' '}
+    <div className='max-w-[96rem] onpass bg-white '>
+      <div className='bg-[#4A90E2] text-white p-4'>
+        <p className='font-bold text-lg'>Complete the Rizz Quiz</p>
+        <p className='text-sm'>
+          Answer Questions Truthfully, Passing is 115 RizzQ
+        </p>
+      </div>{' '}
       {page == 'test' ? (
         <div className='text-black'>
           {loading && <p>Loading...</p>}
