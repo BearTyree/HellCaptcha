@@ -27,8 +27,13 @@ export const ModalProvider = ({ children }) => {
     }, 300);
   };
 
+  // Add a function to update the modal title dynamically
+  const updateModalTitle = (newTitle) => {
+    setModalTitle(newTitle);
+  };
+
   return (
-    <ModalContext.Provider value={{ openModal, closeModal }}>
+    <ModalContext.Provider value={{ openModal, closeModal, updateModalTitle }}>
       {children}
       
       <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
