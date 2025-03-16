@@ -153,6 +153,7 @@ function RizzQ({ onPass }) {
                   setPage('inbetween');
                 }}
               />
+              <div className='h-5'></div>
               <Question
                 key={questionNumber}
                 number={questionNumber}
