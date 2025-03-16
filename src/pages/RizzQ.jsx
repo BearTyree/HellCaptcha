@@ -4,7 +4,7 @@ import Question from '../components/Question';
 import BellCurve from '../components/BellCurve';
 import Timer from '../components/Timer';
 
-function RizzQ() {
+function RizzQ({ onPass }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -133,7 +133,7 @@ function RizzQ() {
   }
 
   return (
-    <>
+    <div className='w-[20rem] h-[20rem] bg-white pt-8 rounded-md p-4'>
       {' '}
       {page == 'test' ? (
         <div className='text-black'>
@@ -182,6 +182,16 @@ function RizzQ() {
                     <span className='font-bold'> {results.rizzq}</span>
                   </div>
                   <BellCurve rizzq={results.rizzq} />
+                  <div className='flex justify-end items-end w-full pb-3'>
+                    <button
+                      className='mr-3 rounded-md p-1 border-1 border-black'
+                      onClick={() => {
+                        onPass();
+                      }}
+                    >
+                      Continue
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <div className='text-black'>Thank You For Your Responses</div>
@@ -190,7 +200,7 @@ function RizzQ() {
           )}
         </>
       )}
-    </>
+    </div>
   );
 }
 
