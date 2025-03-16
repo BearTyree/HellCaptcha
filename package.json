@@ -12,6 +12,8 @@
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.6",
     "@tailwindcss/vite": "^4.0.14",
+    "highcharts": "^12.1.2",
+    "highcharts-react-official": "^3.2.1",
     "matter-js": "^0.20.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
