@@ -22578,18 +22578,16 @@ function cb() {
                   u = this.label;
                 u ||
                   ((this.label = u =
-                    c
-                      .text(this.getLabelText(t), 0, 0, t.useHTML)
-                      .attr({
-                        align: t.textAlign || t.align,
-                        rotation: t.rotation,
-                        class:
-                          'highcharts-plot-' +
-                          (n ? 'band' : 'line') +
-                          '-label ' +
-                          (t.className || ''),
-                        zIndex: l,
-                      })),
+                    c.text(this.getLabelText(t), 0, 0, t.useHTML).attr({
+                      align: t.textAlign || t.align,
+                      rotation: t.rotation,
+                      class:
+                        'highcharts-plot-' +
+                        (n ? 'band' : 'line') +
+                        '-label ' +
+                        (t.className || ''),
+                      zIndex: l,
+                    })),
                   o.chart.styledMode ||
                     u.css(
                       kn(
@@ -28058,16 +28056,14 @@ function cb() {
                     );
                     if (
                       ((re.height = be),
-                      y
-                        .align(re, !1, S)
-                        .attr({
-                          align: re.align,
-                          scaleX: K,
-                          scaleY: K,
-                          'transform-origin': `${
-                            S.x + M * K * qc(re.align)
-                          } ${k}`,
-                        }),
+                      y.align(re, !1, S).attr({
+                        align: re.align,
+                        scaleX: K,
+                        scaleY: K,
+                        'transform-origin': `${
+                          S.x + M * K * qc(re.align)
+                        } ${k}`,
+                      }),
                       !v.floating)
                     ) {
                       let se = be * (be < 1.2 * k ? 1 : K);
@@ -33011,7 +33007,7 @@ function mb({ onPass: x }) {
   U.useEffect(() => {
     (async () => {
       try {
-        const ge = await fetch('http://localhost:8080/questions');
+        const ge = await fetch('https://rizz-q-captcha.vercel.app/questions');
         if (!ge.ok)
           throw (F('error'), new Error('Network response was not ok'));
         const Ce = await ge.json();
@@ -33055,7 +33051,7 @@ function mb({ onPass: x }) {
   U.useEffect(() => {
     async function xe() {
       if (X.length == C.length && _ == C.length) {
-        let ge = await fetch('http://localhost:8080/answers', {
+        let ge = await fetch('https://rizz-q-captcha.vercel.app/answers', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ answers: X }),

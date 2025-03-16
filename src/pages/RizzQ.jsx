@@ -17,7 +17,9 @@ function RizzQ({ onPass }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8080/questions');
+        const response = await fetch(
+          'https://rizz-q-captcha.vercel.app/questions'
+        );
         if (!response.ok) {
           setError('error');
           throw new Error('Network response was not ok');
@@ -83,13 +85,16 @@ function RizzQ({ onPass }) {
   useEffect(() => {
     async function submit() {
       if (answers.length == data.length && questionNumber == data.length) {
-        let response = await fetch('http://localhost:8080/answers', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ answers: answers }),
-        });
+        let response = await fetch(
+          'https://rizz-q-captcha.vercel.app/answers',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ answers: answers }),
+          }
+        );
         console.log(answers);
         setPage('inbetween');
         let json = await response.json();
@@ -114,7 +119,7 @@ function RizzQ({ onPass }) {
 
   // useEffect(() => {
   //   async function getResults() {
-  //     let response = await fetch('http://localhost:8080/calculaterizz', {
+  //     let response = await fetch('https://rizz-q-captcha.vercel.app/calculaterizz', {
   //       method: 'POST',
   //       headers: { 'Content-Type': 'applcation/json' },
   //       body,
