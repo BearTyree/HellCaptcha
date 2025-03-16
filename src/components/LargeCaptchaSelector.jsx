@@ -157,7 +157,7 @@ const LargeCaptchaSelector = ({ onPass, onChallengeChange, customImages }) => {
   };
 
   return (
-    <div className="max-w-[1200px] bg-white rounded-md overflow-hidden shadow-md">
+    <div className="max-w-[75rem] bg-white rounded-md overflow-hidden shadow-md">
       {}
       <div className="bg-[#4A90E2] text-white p-4">
         <p className="font-bold text-lg">Select all images with a</p>
@@ -170,7 +170,7 @@ const LargeCaptchaSelector = ({ onPass, onChallengeChange, customImages }) => {
         {images.map((image) => (
           <div 
             key={image.id}
-            className={`relative cursor-pointer overflow-hidden h-[120px] w-[120px] bg-white`}
+            className={`relative cursor-pointer overflow-hidden h-[7.5rem] w-[7.5rem] bg-white`}
             onClick={() => toggleImageSelection(image.id)}
           >
             <img 

@@ -67,7 +67,7 @@ export const ChessPuzzle = ({ onPass }) => {
   };
 
   return (
-    <div className="w-[645px] bg-white rounded-md overflow-hidden pt-8 p-4 ">
+    <div className="w-[40.313rem] bg-white rounded-md overflow-hidden pt-8 p-4 ">
       {/* Header */}
       <div className="bg-[#1A73E8] text-white px-4 py-3">
         <p className="text-lg font-bold leading-tight mb-1">

@@ -94,20 +94,18 @@ const VerificationContent = ({ onComplete }) => {
   const CurrentCaptcha = captchaComponents[currentCaptchaIndex].component;
 
   return (
-    <div className='relative w-full h-full'>
-      {/* Only render the captcha when neither spinner nor checkmark are showing */}
-      {!showSpinner &&
-        !showCheckmark &&
-        (currentCaptchaIndex === 0 ? (
-          <CurrentCaptcha
-            onPass={handleCaptchaPass}
+    <div className="relative w-full h-full">
+      {!showSpinner && !showCheckmark && (
+        currentCaptchaIndex === 0 ? (
+          <CurrentCaptcha 
+            onPass={handleCaptchaPass} 
             onChallengeChange={handleImageChallengeChange}
           />
         ) : (
           <CurrentCaptcha onPass={handleCaptchaPass} />
-        ))}
-
-      {/* Spinner animation - full overlay with proper centering */}
+        )
+      )}
+  
       {showSpinner && (
         <div className='fixed inset-0 flex items-center justify-center bg-white z-50'>
           <img
@@ -118,7 +116,6 @@ const VerificationContent = ({ onComplete }) => {
         </div>
       )}
 
-      {/* Checkmark animation - full overlay with proper centering */}
       {showCheckmark && (
         <div className='fixed inset-0 flex items-center justify-center bg-white z-50'>
           <div className='min-w-24 min-h-24 bg-green-500 rounded-full flex items-center justify-center'>
