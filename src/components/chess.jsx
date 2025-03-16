@@ -1,54 +1,133 @@
-import React, { useRef, useState } from "react";
+import React, { useState, useRef } from "react";
 
-//h8 g7
 export const ChessPuzzle = ({ onPass }) => {
+  // Empty array for images - you'll add SVG sources manually
+  const defaultImages = Array(64).fill("");
+
+  const [selectedSquares, setSelectedSquares] = useState(new Set());
+  const [moveInput, setMoveInput] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const inputRef = useRef(null);
-  const [isCorrect, setIsCorrect] = useState(null);
 
-  const correctMove = "h8g7";
+  // Chess board setup
+  const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
+  const ranks = [8, 7, 6, 5, 4, 3, 2, 1];
 
-  const checkMove = (event) => {
-    event.preventDefault();
-    const move = inputRef.current.value.trim();
-    if (move === correctMove) {
-      setIsCorrect(true);
-      setTimeout(() => {
-        if (onPass) onPass(true);
-      }, 1000);
+  const toggleSquareSelection = (index) => {
+    const newSelectedSquares = new Set(selectedSquares);
+    if (newSelectedSquares.has(index)) {
+      newSelectedSquares.delete(index);
     } else {
-      setIsCorrect(false);
+      newSelectedSquares.add(index);
+    }
+    setSelectedSquares(newSelectedSquares);
+  };
+
+  const handleVerify = () => {
+    if (moveInput === "h8g7") {
+      setErrorMessage("");
+      if (onPass) {
+        onPass(true);
+      }
+    } else {
+      setErrorMessage("Try Again");
     }
   };
 
-  return (
-    <div className="flex flex-col justify-center items-center w-[96rem] min-h-[48rem]">
-      <div
-        className="flex items-center justify-center"
-        style={{ width: "auto", height: "auto" }}
-      >
-        <img src="../../public/puzzle.png" />
+  const refreshChallenge = () => {
+    setSelectedSquares(new Set());
+    setMoveInput("");
+    setErrorMessage("");
+  };
 
-        <form onSubmit={checkMove}>
+  return (
+    <div className="w-[640px]  border border-gray-300 rounded-md shadow-md">
+      {/* Header */}
+      <div className="bg-[#1A73E8] text-white px-4 py-3">
+        <p className="font-bold text-base leading-tight">
+          Select all squares with a
+        </p>
+        <p className="text-lg font-bold leading-tight mb-1">
+          chess piece that can move
+        </p>
+        <p className="text-xs">
+          Click verify once there are none left.
+        </p>
+      </div>
+
+      {/* Chess Grid */}
+      <div className="grid grid-cols-8 bg-white">
+        {Array(64).fill().map((_, index) => {
+          const row = Math.floor(index / 8);
+          const col = index % 8;
+          const isLightSquare = (row + col) % 2 === 0;
+
+          return (
+            <div
+              key={index}
+              onClick={() => toggleSquareSelection(index)}
+              className={`relative cursor-pointer overflow-hidden 
+                ${isLightSquare ? "bg-[#F0D9B5]" : "bg-[#B58863]"}
+                ${selectedSquares.has(index) ? "outline outline-2 outline-[#4285F4]" : ""}
+                w-[80px] aspect-square flex items-center justify-center
+              `}
+            >
+              {defaultImages[index] && (
+                <img
+                  src={defaultImages[index]}
+                  alt=""
+                  className="w-full h-full object-contain"
+                />
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Footer */}
+      <div className="flex items-center justify-between p-2 bg-[#F9F9F9] border-t border-gray-300">
+        <button
+          onClick={refreshChallenge}
+          className="text-gray-600 hover:text-gray-800"
+          title="Get a new challenge"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+            />
+          </svg>
+        </button>
+        <div className="flex items-center space-x-2">
           <input
             type="text"
-            placeholder="Enter your move"
-            className="border rounded p-2 m-2"
             ref={inputRef}
+            placeholder="Enter move"
+            value={moveInput}
+            onChange={(e) => setMoveInput(e.target.value)}
+            className="px-2 py-1 border border-gray-300 rounded"
           />
-          <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-            Submit
-          </button>
-        </form>
-        {isCorrect !== null && (
-          <div
-            className={`indicator ${
-              isCorrect ? "text-green-500" : "text-red-500"
-            }`}
+          <button
+            onClick={handleVerify}
+            className="px-4 py-2 rounded-sm font-bold bg-[#1A73E8] text-white hover:bg-[#4285F4]"
           >
-            {isCorrect ? "Correct!" : "Not the best move!"}
-          </div>
-        )}
+            VERIFY
+          </button>
+        </div>
       </div>
+      {errorMessage && (
+        <div className="text-red-500 text-center py-2">
+          {errorMessage}
+        </div>
+      )}
     </div>
   );
 };

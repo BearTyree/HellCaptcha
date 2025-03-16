@@ -203,7 +203,7 @@ const ImageCaptchaSelector = ({ onPass, onChallengeChange, customImages }) => {
   };
 
   return (
-    <div className="max-w-[96rem] bg-white rounded-md overflow-hidden shadow-md">
+    <div className="max-w-[96rem] bg-white rounded-md overflow-hidden pt-8 p-4 ">
       {/* Header */}
       <div className="bg-[#4A90E2] text-white p-4">
         <p className="font-bold text-lg">Select all images with a</p>

@@ -25,16 +25,16 @@ const VerificationContent = ({ onComplete }) => {
 
   const captchaComponents = useMemo(() => [
     {
+      component: ChessPuzzle,
+      title: ""
+    },
+    {
         component: ImageCaptchaSelector,
         title: ""
       },
     {
         component: LargeCaptchaSelector,
         title: ""
-    },
-    {
-      component: ChessPuzzle,
-      title: "What is the best move? White to play, use long algebraic notation e.g. e2e5"
     },
     {
       component: TextCaptcha,
@@ -54,7 +54,6 @@ const VerificationContent = ({ onComplete }) => {
   }, [currentCaptchaIndex, updateModalTitle, captchaComponents]);
 
   const handleCaptchaPass = useCallback((success) => {
-    // If the captcha failed, don't show success animations
     if (success === false) {
       return;
     }
@@ -80,32 +79,30 @@ const VerificationContent = ({ onComplete }) => {
   const CurrentCaptcha = captchaComponents[currentCaptchaIndex].component;
 
   return (
-    <div className="relative">
-      {}
+    <div className="relative w-full h-full">
+      {/* Only render the captcha when neither spinner nor checkmark are showing */}
       {!showSpinner && !showCheckmark && (
         currentCaptchaIndex === 0 ? (
           <CurrentCaptcha 
             onPass={handleCaptchaPass} 
             onChallengeChange={handleImageChallengeChange}
-            // Uncomment the line below to use custom images
-            // customImages={customCaptchaImages}
           />
         ) : (
           <CurrentCaptcha onPass={handleCaptchaPass} />
         )
       )}
-
-      {/* Spinner animation */}
+  
+      {/* Spinner animation - full overlay with proper centering */}
       {showSpinner && (
-        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 z-10">
-          <img src="/captcha_spinner.gif" alt="Verifying" className="w-24 h-24" />
+        <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
+          <img src="/captcha_spinner.gif" alt="Verifying" className="min-w-24 min-h-24" />
         </div>
       )}
-
-      {/* Checkmark animation */}
+  
+      {/* Checkmark animation - full overlay with proper centering */}
       {showCheckmark && (
-        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 z-10">
-          <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center transform scale-100">
+        <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
+          <div className="min-w-24 min-h-24 bg-green-500 rounded-full flex items-center justify-center">
             <svg className="w-16 h-16 text-black" viewBox="0 0 24 24">
               <path
                 fill="currentColor"
@@ -117,7 +114,7 @@ const VerificationContent = ({ onComplete }) => {
       )}
     </div>
   );
-};
+}
 
 export const CaptchaBase = () => {
   const { openModal, closeModal } = useModal();
@@ -136,7 +133,7 @@ export const CaptchaBase = () => {
         showFooter: false,
         contentProps: {
           className:
-            "fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg z-50",
+            "fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg z-50",
         },
       }
     );
@@ -150,7 +147,7 @@ export const CaptchaBase = () => {
           <div className="flex items-center">
             <div
               onClick={!isVerified ? openVerificationModal : undefined}
-              className={`w-6 h-6 border border-gray-300 rounded mr-2 relative flex items-center justify-center ${!isVerified ? 'cursor-pointer bg-white hover:border-[#2196f3]' : 'bg-[#009688]'}`}
+              className={`w-6 h-6 border border-gray-300 rounded mr-2 relative flex items-center justify-center ${!isVerified ? 'cursor-pointer  hover:border-[#2196f3]' : 'bg-[#009688]'}`}
             >
               {isVerified && (
                 <div className="absolute w-4 h-4 bg-[#009688] rounded-sm flex items-center justify-center">
