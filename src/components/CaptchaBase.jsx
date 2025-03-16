@@ -4,18 +4,7 @@ import ImageCaptchaSelector from './ImageCaptchaSelector';
 import { useState, useCallback, useEffect, useMemo } from 'react';
 import LargeCaptchaSelector from './LargeCaptchaSelector';
 import RizzQ from '../pages/RizzQ';
-const TextCaptcha = ({ onPass }) => (
-  <div className='flex flex-col items-center justify-center w-[96rem] min-h-[48rem]'>
-    <div className='text-xl mb-4'>Text verification captcha would go here</div>
-    <button
-      onClick={() => onPass(true)}
-      className='bg-blue-500 text-black p-2 rounded'
-    >
-      Simulate Pass
-    </button>
-  </div>
-);
-
+import CATpcha from '../components/CATpcha'
 const VerificationContent = ({ onComplete }) => {
   const [currentCaptchaIndex, setCurrentCaptchaIndex] = useState(0);
   const [showSpinner, setShowSpinner] = useState(false);
@@ -27,10 +16,6 @@ const VerificationContent = ({ onComplete }) => {
 
   const captchaComponents = useMemo(
     () => [
-      {
-        component: RizzQ,
-        title: '',
-      },
       {
         component: ImageCaptchaSelector,
         title: '',
@@ -44,9 +29,14 @@ const VerificationContent = ({ onComplete }) => {
         title: '',
       },
       {
-        component: TextCaptcha,
-        title: 'Type the characters you see in the image',
+        component: RizzQ,
+        title: '',
       },
+      {
+        component: CATpcha,
+        title: '',
+      },
+
     ],
     [imageCaptchaTitle]
   );
@@ -152,11 +142,11 @@ export const CaptchaBase = () => {
   }, [openModal, handleCaptchaComplete]);
 
   return (
-    <div className='font-roboto text-sm'>
+    <div className='font-roboto text-sm '>
       {}
-      <div className='inline-block border border-gray-300 rounded shadow-sm bg-white'>
-        <div className='flex items-center p-3 w-72'>
-          <div className='flex items-center'>
+      <div className='inline-block border border-gray-300 rounded shadow-sm bg-white w-72'>
+        <div className='flex w-full items p-3'>
+          <div className='flex items-center w-full'>
             <div
               onClick={!isVerified ? openVerificationModal : undefined}
               className={`w-6 h-6 border border-gray-300 rounded mr-2 relative flex items-center justify-center ${
@@ -176,7 +166,14 @@ export const CaptchaBase = () => {
                 </div>
               )}
             </div>
-            <span className='text-gray-600'>I'm not a robot</span>
+            <span className='text-black font-weight[550]'>I'm not a robot</span>
+            <div className="ml-auto text-center">
+              <img src="../../public/recaptcha_logo.svg" className="h-14 w-14 mx-auto" />
+              <p className="text-[0.6rem] text-gray-600 mt-1">
+                <a href="https://www.google.com/intl/en/policies/privacy/" target="_blank" rel="noopener noreferrer" className="hover:underline">Privacy</a> -
+                <a href="https://www.google.com/intl/en/policies/terms/" target="_blank" rel="noopener noreferrer" className="hover:underline"> Terms</a>
+              </p>
+            </div>
           </div>
         </div>
       </div>

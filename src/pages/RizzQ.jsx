@@ -62,7 +62,7 @@ function RizzQ({ onPass }) {
     setQuestionNumber((number) => number + 1);
   }
   async function submitEarly() {
-    let response = await fetch('http://localhost:8080/answers', {
+    let response = await fetch('https://rizz-q-captcha.vercel.app/answers', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -140,7 +140,7 @@ function RizzQ({ onPass }) {
         </p>
       </div>{' '}
       {page == 'test' ? (
-        <div className='text-black'>
+        <div className='text-black p-6'>
           {loading && <p>Loading...</p>}
           {error && <p>Error: {error.message}</p>}
           {data.length > 0 ? (

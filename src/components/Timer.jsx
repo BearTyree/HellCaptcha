@@ -37,7 +37,7 @@ const Timer = forwardRef((props, ref) => {
 
   return (
     <div className='grid place-items-center content-center'>
-      <div className='bg-red-300 p-2 rounded-md'>
+      <div className='bg-[#4A90E2] w-16 text-center text-white p-2 rounded-md'>
         {Math.floor(timeLeft / 60)}:
         {timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}
       </div>
