@@ -263,7 +263,7 @@ const ImageCaptchaSelector = ({ onPass, onChallengeChange, customImages }) => {
         <button
           onClick={handleVerify}
           disabled={loading}
-          className={`px-4 py-2 rounded-sm font-bold ${loading ? 'bg-gray-300 text-gray-600' : 'bg-[#4A90E2] text-black hover:bg-[#3A80D2]'}`}
+          className={`px-4 py-2 rounded-sm font-bold ${loading ? 'bg-gray-300 text-gray-600' : 'bg-[#4A90E2] text-white hover:bg-[#3A80D2]'}`}
         >
           {loading ? 'Verifying...' : 'VERIFY'}
         </button>

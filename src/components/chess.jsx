@@ -3,6 +3,32 @@ import React, { useState, useRef } from "react";
 export const ChessPuzzle = ({ onPass }) => {
   // Empty array for images - you'll add SVG sources manually
   const defaultImages = Array(64).fill("");
+  // could this be better? yes, Do I want to add multiple chess puzles, their best moves and FEN? hell no
+  //janks as fuck, but we ball
+  defaultImages[0] = "../../public/chess/bR.svg"
+  defaultImages[4] = "../../public/chess/bR.svg"
+  defaultImages[5] = "../../public/chess/bK.svg"
+  defaultImages[6] = "../../public/chess/bN.svg"
+  defaultImages[7] = "../../public/chess/wQ.svg"
+  defaultImages[9] = "../../public/chess/bP.svg"
+  defaultImages[11] = "../../public/chess/wR.svg"
+  defaultImages[13] = "../../public/chess/bP.svg"
+  defaultImages[14] = "../../public/chess/bB.svg"
+  defaultImages[16] = "../../public/chess/bP.svg"
+  defaultImages[20] = "../../public/chess/bP.svg"
+  defaultImages[21] = "../../public/chess/bQ.svg"
+  defaultImages[22] = "../../public/chess/wB.svg"
+  defaultImages[23] = "../../public/chess/wB.svg"
+  defaultImages[26] = "../../public/chess/bP.svg"
+  defaultImages[46] = "../../public/chess/wP.svg"
+  defaultImages[48] = "../../public/chess/wP.svg"
+  defaultImages[49] = "../../public/chess/wP.svg"
+  defaultImages[50] = "../../public/chess/wP.svg"
+  defaultImages[53] = "../../public/chess/wP.svg"
+  defaultImages[55] = "../../public/chess/wP.svg"
+  defaultImages[60] = "../../public/chess/wR.svg"
+  defaultImages[62] = "../../public/chess/wK.svg"
+
 
   const [selectedSquares, setSelectedSquares] = useState(new Set());
   const [moveInput, setMoveInput] = useState("");
@@ -41,17 +67,14 @@ export const ChessPuzzle = ({ onPass }) => {
   };
 
   return (
-    <div className="w-[640px]  border border-gray-300 rounded-md shadow-md">
+    <div className="w-[645px] bg-white rounded-md overflow-hidden pt-8 p-4 ">
       {/* Header */}
       <div className="bg-[#1A73E8] text-white px-4 py-3">
-        <p className="font-bold text-base leading-tight">
-          Select all squares with a
-        </p>
         <p className="text-lg font-bold leading-tight mb-1">
-          chess piece that can move
+        Think over what is the best move
         </p>
         <p className="text-xs">
-          Click verify once there are none left.
+          Once done, enter in Long Algebraic Notation e.g. e2e4
         </p>
       </div>
 
@@ -68,7 +91,6 @@ export const ChessPuzzle = ({ onPass }) => {
               onClick={() => toggleSquareSelection(index)}
               className={`relative cursor-pointer overflow-hidden 
                 ${isLightSquare ? "bg-[#F0D9B5]" : "bg-[#B58863]"}
-                ${selectedSquares.has(index) ? "outline outline-2 outline-[#4285F4]" : ""}
                 w-[80px] aspect-square flex items-center justify-center
               `}
             >

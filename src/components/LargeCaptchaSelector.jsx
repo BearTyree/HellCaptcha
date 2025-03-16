@@ -199,15 +199,12 @@ const LargeCaptchaSelector = ({ onPass, onChallengeChange, customImages }) => {
             className="text-gray-600 hover:text-gray-800"
             title="Get a new challenge"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-            </svg>
           </button>
         </div>
         <button
           onClick={handleVerify}
           disabled={loading}
-          className={`px-4 py-1 rounded-sm uppercase text-sm font-bold ${loading ? 'bg-gray-300 text-black' : 'bg-[#4A90E2] text-black hover:bg-[#3A80D2]'}`}
+          className={`px-4 py-1 rounded-sm uppercase text-sm font-bold ${loading ? 'bg-gray-300 text-white' : 'bg-[#4A90E2] text-white hover:bg-[#3A80D2]'}`}
         >
           {loading ? 'Verifying...' : 'VERIFY'}
         </button>

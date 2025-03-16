@@ -25,16 +25,16 @@ const VerificationContent = ({ onComplete }) => {
 
   const captchaComponents = useMemo(() => [
     {
-      component: ChessPuzzle,
-      title: ""
-    },
-    {
         component: ImageCaptchaSelector,
         title: ""
       },
     {
         component: LargeCaptchaSelector,
         title: ""
+    },
+    {
+      component: ChessPuzzle,
+      title: ""
     },
     {
       component: TextCaptcha,
@@ -73,7 +73,7 @@ const VerificationContent = ({ onComplete }) => {
           if (onComplete) onComplete();
         }
       }, 1000);
-    }, 1500);
+    }, 1000);
   }, [currentCaptchaIndex, captchaComponents.length, onComplete]);
 
   const CurrentCaptcha = captchaComponents[currentCaptchaIndex].component;
@@ -103,7 +103,7 @@ const VerificationContent = ({ onComplete }) => {
       {showCheckmark && (
         <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
           <div className="min-w-24 min-h-24 bg-green-500 rounded-full flex items-center justify-center">
-            <svg className="w-16 h-16 text-black" viewBox="0 0 24 24">
+            <svg className="w-16 h-16 text-white" viewBox="0 0 24 24">
               <path
                 fill="currentColor"
                 d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"
